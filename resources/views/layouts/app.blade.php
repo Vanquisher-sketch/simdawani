@@ -53,7 +53,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-             @include('layouts')
+             @include('layouts.footer')
             <!-- End of Footer -->
 
         </div>

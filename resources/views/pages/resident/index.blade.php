@@ -42,9 +42,9 @@
                             <td>{{ $res->tanggal_lahir }}</td>
                             <td>{{ $res->gender }}</td>
                             <td>{{ $res->alamat }}</td>
-                            <td>{{ $res->Agama }}</td>
+                            <td>{{ $res->agama }}</td>
                             <td>{{ $res->status_pekerjaan }}</td>
-                            <td>{{ $res->status_Pendidikan }}</td>
+                            <td>{{ $res->status_pendidikan }}</td>
                             <td>{{ $res->status_hubungan }}</td>
                             <td>{{ $res->status_tinggal }}</td>
                             <td>

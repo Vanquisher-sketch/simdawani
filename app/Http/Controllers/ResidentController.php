@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Resident;
 use Illuminate\Http\Request;
-use Illuminate\Http\Rule;
+use Illuminate\Validation\Rule;
 
 class ResidentController extends Controller
 {
@@ -24,18 +24,18 @@ class ResidentController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validatedData = $request->validate([
             'tanggal_lahir'     => ['required', 'date'], 
-            'gender'            => ['required', Rule::in(['laki-laki', 'perempuan'])],
+            'gender'            => ['required', Rule::in(['Laki-laki', 'Perempuan'])],
             'alamat'            => ['required', 'max:700'],
             'agama'             => ['nullable', 'max:100'],
             'status_pekerjaan'  => ['required', Rule::in(['bekerja', 'tidak bekerja'])],
-            'status_pendidikan' => ['required', Rule::in(['Sekolah', 'Tamat Sekolah', 'Putus Sekolah'])],
-            'status_hubungan'   => ['required', Rule::in(['Lajang', 'Menikah', 'Cerai', 'Janda/duda'])],
-            'status_tinggal'    => ['required', Rule::in(['Tetap', 'Pindahan'])],
+            'status_pendidikan' => ['required', Rule::in(['sekolah', 'tamat sekolah', 'putus sekolah'])],
+            'status_hubungan'   => ['required', Rule::in(['belum menikah', 'menikah', 'cerai', 'janda/duda'])],
+            'status_tinggal'    => ['required', Rule::in(['tetap', 'pindahan'])],
         ]);
 
-        Resident::create($request->validated());
+        Resident::create($validatedData);
 
         return redirect('/resident')->with('sukses', 'Berhasil memasukkan data');
     }
@@ -50,18 +50,18 @@ class ResidentController extends Controller
 
     public function update(Request $request)
     {
-            $validated = $request->validate([
+            $validatedData = $request->validate([
             'tanggal_lahir'     => ['required', 'date'], 
-            'gender'            => ['required', Rule::in(['laki-laki', 'perempuan'])],
+            'gender'            => ['required', Rule::in(['Laki-laki', 'Perempuan'])],
             'alamat'            => ['required', 'max:700'],
             'agama'             => ['nullable', 'max:100'],
             'status_pekerjaan'  => ['required', Rule::in(['bekerja', 'tidak bekerja'])],
-            'status_pendidikan' => ['required', Rule::in(['Sekolah', 'Tamat Sekolah', 'Putus Sekolah'])],
-            'status_hubungan'   => ['required', Rule::in(['Lajang', 'Menikah', 'Cerai', 'Janda/duda'])],
-            'status_tinggal'    => ['required', Rule::in(['Tetap', 'Pindahan'])],
+            'status_pendidikan' => ['required', Rule::in(['sekolah', 'tamat sekolah', 'putus sekolah'])],
+            'status_hubungan'   => ['required', Rule::in(['belum menikah', 'menikah', 'cerai', 'janda/duda'])],
+            'status_tinggal'    => ['required', Rule::in(['tetap', 'pindahan'])],
         ]);
 
-        Resident::FindOrFail($id)-update($request->validated());
+        Resident::FindOrFail($id)-update($validatedData);
 
         return redirect('/resident')->with('sukses', 'Berhasil mengubah data');
     }

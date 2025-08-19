@@ -9,4 +9,15 @@ class Resident extends Model
     protected $table= 'residents';
 
     protected $guard= [];
+
+    protected $fillable = [
+        'tanggal_lahir', // <-- TAMBAHKAN BARIS INI
+        'gender',
+        'alamat',
+        'agama',
+        'status_pekerjaan',
+        'status_pendidikan',
+        'status_hubungan',
+        'status_tinggal'];
+
 }

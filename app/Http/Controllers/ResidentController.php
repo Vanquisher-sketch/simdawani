@@ -48,7 +48,7 @@ class ResidentController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
             $validatedData = $request->validate([
             'tanggal_lahir'     => ['required', 'date'], 
@@ -61,7 +61,7 @@ class ResidentController extends Controller
             'status_tinggal'    => ['required', Rule::in(['tetap', 'pindahan'])],
         ]);
 
-        Resident::FindOrFail($id)-update($validatedData);
+        Resident::FindOrFail($id)->update($validatedData);
 
         return redirect('/resident')->with('sukses', 'Berhasil mengubah data');
     }
@@ -71,6 +71,6 @@ class ResidentController extends Controller
         $resident = Resident::findOrFail($id);
         $resident->delete();
 
-        return redirect('/recident')->with('sukses', 'berhasil menghapus data');
+        return redirect('/resident')->with('sukses', 'berhasil menghapus data');
     }
 }

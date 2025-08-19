@@ -52,16 +52,15 @@
                                     <a href="/resident/{{ $res->id }}" class="d-inline-block mr-2 btn btn-sm btn-warning">
                                         <i class="fas fa-pen"></i>
                                     </a>
-                                    <a href="/resident/{{ $res->id }}" class="btn btn-sm btn-danger">
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationDelete-{{ $res->id }}">
                                         <i class="fas fa-eraser"></i>
-                                    </a>
+                                    </button>
                                 </div>
-                            </td>
-                        </tr> 
+                            </tr> 
+                            @include('pages.resident.confirmation-delete')
                         @endforeach
                     </tbody>
                     @endif
-                    
                 </table>
                 </div>
 

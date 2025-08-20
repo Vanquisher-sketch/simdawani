@@ -5,9 +5,9 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Data Warga</h1>
             <a href="/resident/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-             class="fas fa-plus fa-sm text-white-50"></i> Tambah</a>
+             class="fas fa-plus fa-sm text-white-50"></i>
+             Tambah</a>
         </div>
-
     {{-- tabel--}}
     <div class="row">
         <div class="col">
@@ -16,6 +16,7 @@
                     <table class="table table-responsive table-bordered tabel-hovered">
                         <thead>
                         <tr>
+                            <th>No</th>
                             <th>Tanggal Lahir</th>
                             <th>Jenis Kelamin</th>
                             <th>Agama</th>
@@ -38,6 +39,7 @@
                     <tbody>
                         @foreach ($residents as $res)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $res->tanggal_lahir }}</td>
                             <td>{{ $res->gender }}</td>
                             <td>{{ $res->agama }}</td>
@@ -54,14 +56,14 @@
                                         <i class="fas fa-eraser"></i>
                                     </button>
                                 </div>
-                            </tr> 
-                            @include('pages.resident.confirmation-delete')
+                            </td>
+                        </tr> 
+                        @include('pages.resident.confirmation-delete')
                         @endforeach
                     </tbody>
                     @endif
                 </table>
                 </div>
-
             </div>
         </div>
     </div>

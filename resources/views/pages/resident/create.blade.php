@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <form action="/resident" method="post">
+            <form action="/resident" method="POST">
                 @csrf
                 @method('POST')
                 <div class="card">
@@ -23,10 +23,6 @@
                                 <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>    
                             </select>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="alamat">Alamat</label>
-                            <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control"></textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label for="agama">Agama</label>

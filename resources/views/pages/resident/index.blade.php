@@ -18,7 +18,6 @@
                         <tr>
                             <th>Tanggal Lahir</th>
                             <th>Jenis Kelamin</th>
-                            <th>Alamat</th>
                             <th>Agama</th>
                             <th>Status Pekerjaan</th>
                             <th>Status Pendidikan</th>
@@ -41,7 +40,6 @@
                         <tr>
                             <td>{{ $res->tanggal_lahir }}</td>
                             <td>{{ $res->gender }}</td>
-                            <td>{{ $res->alamat }}</td>
                             <td>{{ $res->agama }}</td>
                             <td>{{ $res->status_pekerjaan }}</td>
                             <td>{{ $res->status_pendidikan }}</td>

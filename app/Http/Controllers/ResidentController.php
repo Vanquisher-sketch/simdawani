@@ -27,7 +27,6 @@ class ResidentController extends Controller
         $validatedData = $request->validate([
             'tanggal_lahir'     => ['required', 'date'], 
             'gender'            => ['required', Rule::in(['Laki-laki', 'Perempuan'])],
-            'alamat'            => ['required', 'max:700'],
             'agama'             => ['nullable', 'max:100'],
             'status_pekerjaan'  => ['required', Rule::in(['bekerja', 'tidak bekerja'])],
             'status_pendidikan' => ['required', Rule::in(['sekolah', 'tamat sekolah', 'putus sekolah'])],
@@ -53,7 +52,6 @@ class ResidentController extends Controller
             $validatedData = $request->validate([
             'tanggal_lahir'     => ['required', 'date'], 
             'gender'            => ['required', Rule::in(['Laki-laki', 'Perempuan'])],
-            'alamat'            => ['required', 'max:700'],
             'agama'             => ['nullable', 'max:100'],
             'status_pekerjaan'  => ['required', Rule::in(['bekerja', 'tidak bekerja'])],
             'status_pendidikan' => ['required', Rule::in(['sekolah', 'tamat sekolah', 'putus sekolah'])],

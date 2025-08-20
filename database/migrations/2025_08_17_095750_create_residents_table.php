@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->date('tanggal_lahir');
             $table->enum('gender', ['Laki-laki','Perempuan']);
-            $table->text('alamat');
             $table->string('agama');
             $table->enum('status_pekerjaan', ['bekerja','tidak bekerja']);
             $table->enum('status_pendidikan', ['sekolah', 'tamat sekolah', 'putus sekolah']);

@@ -25,10 +25,6 @@
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="alamat">Alamat</label>
-                            <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group mb-3">
                             <label for="agama">Agama</label>
                             <input type="text" name="agama" id="agama" class="form-control">
                         </div>

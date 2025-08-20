@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ResidentController;
+use App\Http\Controllers\infrastrukturController;
 use Illuminate\Support\Facades\Route;
 
 // Auth
@@ -22,3 +23,10 @@ Route::get('/resident/{id}', [Residentcontroller::class, 'edit']);
 Route::post('/resident', [Residentcontroller::class, 'store']);
 Route::put('/resident/{id}', [Residentcontroller::class, 'update']);
 Route::delete('/resident/{id}', [Residentcontroller::class, 'destroy']);
+
+Route::get('/infrastruktur', [Infrastrukturcontroller::class, 'index']);
+Route::get('/infrastruktur/create', [Infrastrukturcontroller::class, 'create']);
+Route::get('/infrastruktur/{id}', [Infrastrukturcontroller::class, 'edit']);
+Route::post('/infrastruktur', [Infrastrukturcontroller::class, 'store']);
+Route::put('/infrastruktur/{id}', [Infrastrukturcontroller::class, 'update']);
+Route::delete('/infrastruktur/{id}', [Infrastrukturcontroller::class, 'destroy']);

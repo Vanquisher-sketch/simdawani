@@ -13,7 +13,6 @@ class Resident extends Model
     protected $fillable = [
         'tanggal_lahir', // <-- TAMBAHKAN BARIS INI
         'gender',
-        'alamat',
         'agama',
         'status_pekerjaan',
         'status_pendidikan',

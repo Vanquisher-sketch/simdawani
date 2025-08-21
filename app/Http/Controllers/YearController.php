@@ -24,6 +24,8 @@ class YearController extends Controller
 
     public function store(Request $request)
     {
+        
+
         $validatedData = $request->validate([
             'tahun_lahir'     => ['required', 'max:100'], 
             'jumlah'          => ['required','max:100'],

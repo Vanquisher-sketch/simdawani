@@ -68,6 +68,16 @@
                     <i class="fas fa-fw fa-landmark"></i>
                     <span>Data Infrastrukur</span></a>
             </li>
+            <li class="nav-item {{ request()->is('year') ? 'active' : '' }}">
+                <a class="nav-link" href="/year">
+                    <i class="fas fa-regular fa-calendar-check"></i>
+                    <span>Data Tahun Kelahiran</span></a>
+            </li>
+            <li class="nav-item {{ request()->is('education') ? 'active' : '' }}">
+                <a class="nav-link" href="/education">
+                    <i class="fas fa-regular fa-school"></i>
+                    <span>Data Status Kependidikan</span></a>
+            </li>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

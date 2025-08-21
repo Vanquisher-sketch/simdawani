@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class EducationController extends Controller
 {
@@ -22,8 +24,9 @@ class EducationController extends Controller
 
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
-            'sekolah'     => ['required', Rule::in(['sekolah','tidak sekolah','putus sekolah'])], 
+            'sekolah'     => ['required', Rule::in(['masih sekolah','tidak sekolah','putus sekolah'])], 
             'jumlah'          => ['required','max:100'],
         ]);
 

@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 
     // Grup untuk route yang hanya bisa diakses Admin
     Route::middleware('role:Admin')->group(function () {
+        Route::post('/education', [App\Http\Controllers\EducationController::class, 'store'])->name('education.store');
         Route::resource('resident', ResidentController::class);
         Route::resource('infrastruktur', InfrastrukturController::class);
         Route::resource('year', YearController::class);

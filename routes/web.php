@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\InfrastrukturController;
+use App\Http\Controllers\YearController;
+use App\Http\Controllers\EducationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,5 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:Admin')->group(function () {
         Route::resource('resident', ResidentController::class);
         Route::resource('infrastruktur', InfrastrukturController::class);
+        Route::resource('year', YearController::class);
+        Route::resource('education', EducationController::class);
     });
 });

@@ -12,9 +12,9 @@ class ResidentController extends Controller
     {
         $residents = Resident::all();
 
-        return view('pages.resident.index', [
-            'residents' => $residents,
-        ]);
+        $total_jumlah = Resident::sum('jumlah'); // <-- INI BAGIAN PENTINGNYA
+
+        return view('pages.resident.index', compact('residents', 'total_jumlah'));
     }
 
     public function create()
@@ -25,13 +25,8 @@ class ResidentController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'tanggal_lahir'     => ['required', 'date'], 
-            'gender'            => ['required', Rule::in(['Laki-laki', 'Perempuan'])],
-            'agama'             => ['nullable', 'max:100'],
-            'status_pekerjaan'  => ['required', Rule::in(['bekerja', 'tidak bekerja'])],
-            'status_pendidikan' => ['required', Rule::in(['sekolah', 'tamat sekolah', 'putus sekolah'])],
-            'status_hubungan'   => ['required', Rule::in(['belum menikah', 'menikah', 'cerai', 'janda/duda'])],
             'status_tinggal'    => ['required', Rule::in(['tetap', 'pindahan'])],
+            'jumlah'            => ['required','max:100'],
         ]);
 
         Resident::create($validatedData);
@@ -42,21 +37,18 @@ class ResidentController extends Controller
     public function edit($id)
     {
         $resident = Resident::findOrFail($id);
+
         return view('pages.resident.edit', [
             'resident' => $resident,
         ]);
     }
+    
 
     public function update(Request $request, $id)
     {
             $validatedData = $request->validate([
-            'tanggal_lahir'     => ['required', 'date'], 
-            'gender'            => ['required', Rule::in(['Laki-laki', 'Perempuan'])],
-            'agama'             => ['nullable', 'max:100'],
-            'status_pekerjaan'  => ['required', Rule::in(['bekerja', 'tidak bekerja'])],
-            'status_pendidikan' => ['required', Rule::in(['sekolah', 'tamat sekolah', 'putus sekolah'])],
-            'status_hubungan'   => ['required', Rule::in(['belum menikah', 'menikah', 'cerai', 'janda/duda'])],
             'status_tinggal'    => ['required', Rule::in(['tetap', 'pindahan'])],
+            'jumlah'            => ['required', 'max:100'],
         ]);
 
         Resident::FindOrFail($id)->update($validatedData);

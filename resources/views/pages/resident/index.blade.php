@@ -13,17 +13,12 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-body">
-                    <table class="table table-responsive table-bordered tabel-hovered">
+                    <table class="table table-bordered table-hovered">
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Agama</th>
-                            <th>Status Pekerjaan</th>
-                            <th>Status Pendidikan</th>
-                            <th>Status Hubungan</th>
                             <th>Status Tinggal</th>
+                            <th>jumlah</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -40,16 +35,13 @@
                         @foreach ($residents as $res)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $res->tanggal_lahir }}</td>
-                            <td>{{ $res->gender }}</td>
-                            <td>{{ $res->agama }}</td>
-                            <td>{{ $res->status_pekerjaan }}</td>
-                            <td>{{ $res->status_pendidikan }}</td>
-                            <td>{{ $res->status_hubungan }}</td>
                             <td>{{ $res->status_tinggal }}</td>
+                            <td>{{ $res->jumlah}}</td>
                             <td>
+
                                 <div class="d-flex">
-                                    <a href="/resident/{{ $res->id }}" class="d-inline-block mr-2 btn btn-sm btn-warning">
+                                    {{-- GANTI TOMBOL LAMA ANDA DENGAN INI --}}
+                                    <a href="{{ route('resident.edit', $res->id) }}" class="d-inline-block mr-2 btn btn-sm btn-warning">
                                         <i class="fas fa-pen"></i>
                                     </a>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationDelete-{{ $res->id }}">
@@ -62,7 +54,10 @@
                         @endforeach
                     </tbody>
                     @endif
-                </table>
+                    </table>
+                    <div class="d-flex justify-content-end">
+                        <strong>Total Data: {{ $total_jumlah }} Warga</strong>
+                    </div>
                 </div>
             </div>
         </div>

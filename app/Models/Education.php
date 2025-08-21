@@ -4,15 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Resident extends Model
+class Education extends Model
 {
-    protected $table= 'residents';
+    protected $table= 'years';
 
     protected $guard= [];
 
     protected $fillable = [
-        'status_tinggal',
-        'jumlah',
-    ];
-
+        'sekolah', // <-- TAMBAHKAN BARIS INI
+        'jumlah',];
 }

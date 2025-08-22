@@ -5,6 +5,8 @@ use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\InfrastrukturController;
 use App\Http\Controllers\YearController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\OccupationController;
+use App\Http\Controllers\InventarisController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,5 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('infrastruktur', InfrastrukturController::class);
         Route::resource('year', YearController::class);
         Route::resource('education', EducationController::class);
+        Route::resource('occupation', OccupationController::class);
+        Route::resource('inventaris', InventarisController::class);
     });
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Resident;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use PDF; 
 
 class ResidentController extends Controller
 {
@@ -63,4 +64,26 @@ class ResidentController extends Controller
 
         return redirect('/resident')->with('sukses', 'berhasil menghapus data');
     }
+
+
+// ... (method lain di dalam controller)
+
+public function printPDF()
+{
+    // Ambil data yang sama dengan yang Anda gunakan di halaman index
+    $residents = Resident::all(); // Sesuaikan cara Anda mengambil data
+    $total_jumlah = $residents->sum('jumlah');
+
+    // Muat view PDF dan kirimkan datanya
+    $pdf = PDF::loadView('pages.resident.cetak', [
+        'residents' => $residents,
+        'total_jumlah' => $total_jumlah
+    ]);
+
+    // (Opsional) Atur ukuran kertas dan orientasi
+    $pdf->setPaper('A4', 'portrait');
+
+    // Tampilkan PDF di browser
+    return $pdf->stream('laporan-data-warga.pdf');
+}
 }

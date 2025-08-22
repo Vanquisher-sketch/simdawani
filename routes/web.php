@@ -7,6 +7,7 @@ use App\Http\Controllers\YearController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,11 +38,19 @@ Route::middleware('auth')->group(function () {
     // Grup untuk route yang hanya bisa diakses Admin
     Route::middleware('role:Admin')->group(function () {
         Route::post('/education', [App\Http\Controllers\EducationController::class, 'store'])->name('education.store');
+        Route::get('/resident/cetak', [ResidentController::class, 'printPDF'])->name('resident.cetak');
         Route::resource('resident', ResidentController::class);
         Route::resource('infrastruktur', InfrastrukturController::class);
         Route::resource('year', YearController::class);
+        Route::get('/education/cetak', [EducationController::class, 'printPDF'])->name('education.cetak');
         Route::resource('education', EducationController::class);
         Route::resource('occupation', OccupationController::class);
         Route::resource('inventaris', InventarisController::class);
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        
     });
+
+
+// Tambahkan route ini
+
 });

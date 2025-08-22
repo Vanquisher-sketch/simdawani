@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Education;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use PDF;
 
 class EducationController extends Controller
 {
@@ -62,4 +63,23 @@ class EducationController extends Controller
 
         return redirect('/education')->with('sukses', 'berhasil menghapus data');
     }
+    public function printPDF()
+{
+    // Ambil data yang sama dengan yang Anda gunakan di halaman index
+    $educations = Education::all(); // Sesuaikan cara Anda mengambil data
+    $total_jumlah = $educations->sum('jumlah');
+
+    // Muat view PDF dan kirimkan datanya
+    $pdf = PDF::loadView('pages.education.cetak', [
+        'educations' => $educations,
+        'total_jumlah' => $total_jumlah
+    ]);
+
+    // (Opsional) Atur ukuran kertas dan orientasi
+    $pdf->setPaper('A4', 'portrait');
+
+    // Tampilkan PDF di browser
+    return $pdf->stream('laporan-data-warga.pdf');
+}
+
 }

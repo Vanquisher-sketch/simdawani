@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inventaris;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule; // Pastikan Rule di-import
+use PDF;
 
 class InventarisController extends Controller
 {
@@ -81,4 +82,23 @@ class InventarisController extends Controller
         $inventari->delete();
         return redirect()->route('inventaris.index')->with('success', 'Berhasil menghapus data');
     }
+    public function printPDF() // atau cetakPDF()
+{
+    // Ambil data
+    $daftarBarang = Inventaris::all();
+    $total_jumlah = $daftarBarang->sum('jumlah');
+
+    // Muat view PDF
+    $pdf = PDF::loadView('pages.inventaris.cetak', [
+        'daftarBarang' => $daftarBarang, // <-- UBAH DI SINI
+        'total_jumlah' => $total_jumlah
+    ]);
+
+    // Atur kertas
+    $pdf->setPaper('A4', 'landscape');
+
+    // Tampilkan PDF
+    return $pdf->stream('data-inventaris-ruangan.pdf');
+}
+
 }

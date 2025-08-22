@@ -1,99 +1,90 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Data Warga</title>
-    {{-- Ini adalah style inline agar tampilan tetap rapi saat di-convert ke PDF --}}
+    <title>Laporan Inventaris Ruangan</title>
     <style>
         body {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            color: #333;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 10px; /* Ukuran font lebih kecil agar muat */
         }
         .header {
             text-align: center;
             margin-bottom: 25px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
         }
         .header h1 {
             margin: 0;
-            font-size: 24px;
-        }
-        .header p {
-            margin: 5px 0 0;
-            font-size: 14px;
+            font-size: 22px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
-        }
-        table, th, td {
-            border: 1px solid #999;
         }
         th, td {
-            padding: 8px;
+            border: 1px solid #000;
+            padding: 5px;
             text-align: left;
+            vertical-align: middle; /* Agar teks di tengah secara vertikal */
         }
         th {
             background-color: #f2f2f2;
-            font-weight: bold;
+            text-align: center; /* Judul kolom di tengah */
         }
-        .total-row {
-            font-weight: bold;
-        }
-        .footer {
-            text-align: right;
-            margin-top: 30px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .no-data {
+        .text-center {
             text-align: center;
-            padding: 20px;
-            font-style: italic;
+        }
+        .text-end {
+            text-align: right;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>Laporan Data Warga</h1>
-        <h2>Berdasarkan Status Kependudukan</h2>
-        {{-- Menampilkan tanggal saat ini secara dinamis --}}
-        <p>Dicetak pada: {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+        <h1>Data Barang Inventaris Ruangan</h1>
     </div>
 
     <table>
         <thead>
             <tr>
-                <th style="width: 5%;">No</th>
-                <th>Status Kependudukan</th>
-                <th style="width: 20%;">Jumlah</th>
+                <th rowspan="2">No Urut</th>
+                <th rowspan="2">Nama Barang/ Jenis Barang</th>
+                <th rowspan="2">Merk/ Model</th>
+                <th rowspan="2">Bahan</th>
+                <th rowspan="2">Tahun Pembelian</th>
+                <th rowspan="2">No. Kode Barang</th>
+                <th rowspan="2">Jumlah</th>
+                <th rowspan="2">Harga Beli (Rp)</th>
+                <th colspan="3">Keadaan Barang</th>
+                <th rowspan="2">Keterangan</th>
+            </tr>
+            <tr>
+                <th>Baik (B)</th>
+                <th>Kurang Baik (KB)</th>
+                <th>Rusak Berat (RB)</th>
             </tr>
         </thead>
         <tbody>
-            @if (count($residents) > 0)
-                @foreach ($residents as $res)
+            @forelse ($daftarBarang as $item)
                 <tr>
-                    <td style="text-align: center;">{{ $loop->iteration }}</td>
-                    <td>{{ $res->status_tinggal }}</td>
-                    <td>{{ $res->jumlah }} Warga</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td>{{ $item->nama_barang }}</td>
+                    <td>{{ $item->merk_model }}</td>
+                    <td>{{ $item->bahan }}</td>
+                    <td class="text-center">{{ $item->tahun_pembelian }}</td>
+                    <td class="text-center">{{ $item->kode_barang }}</td>
+                    <td class="text-center">{{ $item->jumlah }}</td>
+                    <td class="text-end">{{ number_format($item->harga_perolehan, 0, ',', '.') }}</td>
+                    <td class="text-center">@if($item->kondisi == 'B') ✓ @endif</td>
+                    <td class="text-center">@if($item->kondisi == 'KB') ✓ @endif</td>
+                    <td class="text-center">@if($item->kondisi == 'RB') ✓ @endif</td>
+                    <td>{{ $item->keterangan }}</td>
                 </tr>
-                @endforeach
-                {{-- Baris untuk menampilkan total --}}
-                <tr class="total-row">
-                    <td colspan="2" style="text-align: right;">Total Jumlah Warga</td>
-                    <td>{{ $total_jumlah }} Warga</td>
-                </tr>
-            @else
+            @empty
                 <tr>
-                    <td colspan="3" class="no-data">
-                        Tidak ada data yang tersedia.
-                    </td>
+                    {{-- Colspan disesuaikan dengan total kolom (12) --}}
+                    <td colspan="12" class="text-center">Data inventaris masih kosong.</td>
                 </tr>
-            @endif
+            @endforelse
         </tbody>
     </table>
 

@@ -6,6 +6,7 @@ use App\Models\Infrastruktur;
 use Illuminate\Http\Request;
 // Tambahkan ini untuk menggunakan fitur Storage
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class InfrastrukturController extends Controller
 {
@@ -98,4 +99,24 @@ class InfrastrukturController extends Controller
 
         return redirect('/infrastruktur')->with('sukses', 'Berhasil menghapus data');
     }
+
+    public function printPDF()
+{
+    // Ambil data yang sama dengan yang Anda gunakan di halaman index
+    $infrastrukturs = Infrastruktur::all(); // Sesuaikan cara Anda mengambil data
+    $total_jumlah = $infrastrukturs->sum('jumlah');
+
+    // Muat view PDF dan kirimkan datanya
+    $pdf = PDF::loadView('pages.infrastruktur.cetak', [
+        'infrastrukturs' => $infrastrukturs,
+        'total_jumlah' => $total_jumlah
+    ]);
+
+    // (Opsional) Atur ukuran kertas dan orientasi
+    $pdf->setPaper('A4', 'portrait');
+
+    // Tampilkan PDF di browser
+    return $pdf->stream('laporan-data-warga.pdf');
+}
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use PDF;
 
 class OccupationController extends Controller
 {
@@ -63,4 +64,23 @@ class OccupationController extends Controller
 
         return redirect('/occupation')->with('sukses', 'berhasil menghapus data');
     }
+
+    public function printPDF()
+{
+    // Ambil data yang sama dengan yang Anda gunakan di halaman index
+    $occupations = Occupation::all(); // Sesuaikan cara Anda mengambil data
+    $total_jumlah = $occupations->sum('jumlah');
+
+    // Muat view PDF dan kirimkan datanya
+    $pdf = PDF::loadView('pages.occupation.cetak', [
+        'occupations' => $occupations,
+        'total_jumlah' => $total_jumlah
+    ]);
+
+    // (Opsional) Atur ukuran kertas dan orientasi
+    $pdf->setPaper('A4', 'portrait');
+
+    // Tampilkan PDF di browser
+    return $pdf->stream('laporan-data-warga.pdf');
+}
 }

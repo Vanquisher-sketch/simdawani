@@ -40,11 +40,15 @@ Route::middleware('auth')->group(function () {
         Route::post('/education', [App\Http\Controllers\EducationController::class, 'store'])->name('education.store');
         Route::get('/resident/cetak', [ResidentController::class, 'printPDF'])->name('resident.cetak');
         Route::resource('resident', ResidentController::class);
+        Route::get('/infrastruktur/cetak', [InfrastrukturController::class, 'printPDF'])->name('infrastruktur.cetak');
         Route::resource('infrastruktur', InfrastrukturController::class);
+        Route::get('/year/cetak', [YearController::class, 'printPDF'])->name('year.cetak');
         Route::resource('year', YearController::class);
         Route::get('/education/cetak', [EducationController::class, 'printPDF'])->name('education.cetak');
         Route::resource('education', EducationController::class);
+        Route::get('/occupation/cetak', [OccupationController::class, 'printPDF'])->name('occupation.cetak');
         Route::resource('occupation', OccupationController::class);
+        Route::get('/inventaris/cetak', [InventarisController::class, 'printPDF'])->name('inventaris.cetak');
         Route::resource('inventaris', InventarisController::class);
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         

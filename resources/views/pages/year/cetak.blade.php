@@ -60,7 +60,7 @@
 
     <div class="header">
         <h1>Laporan Data Warga</h1>
-        <h2>Berdasarkan Status Pekerjaan</h2>
+        <h2>Berdasarkan Tahun Kelahiran</h2>
         {{-- Menampilkan tanggal saat ini secara dinamis --}}
         <p>Dicetak pada: {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
     </div>
@@ -69,17 +69,17 @@
         <thead>
             <tr>
                 <th style="width: 5%;">No</th>
-                <th>Status Pekerjaan</th>
+                <th>Tahun Kelahiran</th>
                 <th style="width: 20%;">Jumlah</th>
             </tr>
         </thead>
         <tbody>
-            @if (count($occupations) > 0)
-                @foreach ($occupations as $oc)
+            @if (count($years) > 0)
+                @foreach ($years as $res)
                 <tr>
                     <td style="text-align: center;">{{ $loop->iteration }}</td>
-                    <td>{{ $oc->pekerjaan }}</td>
-                    <td>{{ $oc->jumlah }} Warga</td>
+                    <td>{{ $res->tahun_lahir }}</td>
+                    <td>{{ $res->jumlah }} Warga</td>
                 </tr>
                 @endforeach
                 {{-- Baris untuk menampilkan total --}}

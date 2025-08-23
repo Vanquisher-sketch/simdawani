@@ -46,16 +46,16 @@
     <table>
         <thead>
             <tr>
-                <th rowspan="2">No Urut</th>
-                <th rowspan="2">Nama Barang/ Jenis Barang</th>
-                <th rowspan="2">Merk/ Model</th>
-                <th rowspan="2">Bahan</th>
-                <th rowspan="2">Tahun Pembelian</th>
-                <th rowspan="2">No. Kode Barang</th>
-                <th rowspan="2">Jumlah</th>
-                <th rowspan="2">Harga Beli (Rp)</th>
+                <th rowspan="1">No Urut</th>
+                <th rowspan="1">Nama Barang/ Jenis Barang</th>
+                <th rowspan="1">Merk/ Model</th>
+                <th rowspan="1">Bahan</th>
+                <th rowspan="1">Tahun Pembelian</th>
+                <th rowspan="1">No. Kode Barang</th>
+                <th rowspan="1">Jumlah</th>
+                <th rowspan="1">Harga Beli (Rp)</th>
                 <th colspan="3">Keadaan Barang</th>
-                <th rowspan="2">Keterangan</th>
+                <th rowspan="1">Keterangan</th>
             </tr>
             <tr>
                 <th>Baik (B)</th>

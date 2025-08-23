@@ -103,6 +103,17 @@
                     <i class="fas fa-fw fa-landmark"></i>
                     <span>Data Inventori Ruangan</span></a>
             </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+             <!-- Heading -->
+            <div class="sidebar-heading">
+               Data Akun
+            </div>
+            <li class="nav-item {{ request()->is('account') ? 'active' : '' }}">
+                <a class="nav-link" href="/account">
+                    <i class=" fas fa-regular fa-user"></i>
+                    <span>Account</span></a>
+            </li> 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

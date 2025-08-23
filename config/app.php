@@ -122,5 +122,10 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    
+    'providers' => [
+    // ... provider lainnya
+    App\Providers\SidebarServiceProvider::class,
+    ],
 
 ];

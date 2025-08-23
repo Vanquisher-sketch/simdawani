@@ -97,12 +97,35 @@
             <!-- Heading -->
             <div class="sidebar-heading">
                 Data Barang
-            </div> 
-            <li class="nav-item {{ request()->is('inventaris') ? 'active' : '' }}">
-                <a class="nav-link" href="/inventaris">
+            </div>
+            <li class="nav-item {{ request()->is('room') ? 'active' : '' }}">
+                <a class="nav-link" href="/room">
                     <i class="fas fa-fw fa-landmark"></i>
-                    <span>Data Inventori Ruangan</span></a>
+                    <span>Data Ruangan</span></a>
             </li>
+            <li class="nav-item {{ request()->is('inventaris*') ? 'active' : '' }}">
+    
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventaris"
+        aria-expanded="true" aria-controls="collapseInventaris">
+        <i class="fas fa-fw fa-landmark"></i>
+        <span>Data Inventori Ruangan</span>
+    </a>
+    
+    <div id="collapseInventaris" class="collapse {{ request()->is('inventaris*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pilih Ruangan:</h6>
+            
+            <a class="collapse-item {{ request()->is('inventaris') ? 'active' : '' }}" href="/inventaris">Semua Inventaris</a>
+
+            @foreach ($ruangans as $ruangan)
+                <a class="collapse-item {{ request()->is('inventaris/ruangan/' . $ruangan->id) ? 'active' : '' }}" 
+                   href="/inventaris/ruangan/{{ $ruangan->id }}">
+                   {{ $ruangan->nama_ruangan }}
+                </a>
+            @endforeach
+        </div>
+    </div>
+</li>
 
             <hr class="sidebar-divider d-none d-md-block">
              <!-- Heading -->
@@ -122,7 +145,7 @@
             </div>
             <li class="nav-item {{ request()->is('account') ? 'active' : '' }}">
                 <a class="nav-link" href="/account">
-                    <i class=" fas fa-regular fa-user"></i>
+                    <i class=" fas fa-regular fa-newspaper"></i>
                     <span>Laporan</span></a>
             </li> 
             <!-- Sidebar Toggler (Sidebar) -->

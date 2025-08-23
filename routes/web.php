@@ -8,6 +8,7 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -51,6 +52,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/inventaris/cetak', [InventarisController::class, 'printPDF'])->name('inventaris.cetak');
         Route::resource('inventaris', InventarisController::class);
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('room', RoomController::class);
+        Route::get('/inventaris/ruangan/{ruangan}', [InventarisController::class, 'showByRuangan'])->name('inventaris.ruangan');
         
     });
 
